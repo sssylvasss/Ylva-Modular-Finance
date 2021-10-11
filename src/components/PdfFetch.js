@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
+import moment from 'moment';
 
 export const PdfFetch = ({ lang, tag, type }) => {
   const [pressReleases, setPressReleases] = useState(null);
@@ -29,7 +30,11 @@ export const PdfFetch = ({ lang, tag, type }) => {
                 (attachment) => attachment.url
               )}
             >
-              <DateText>Published: {item.content.publish_date}</DateText>
+              <DateText>
+                {moment(item.content.publish_date).format(
+                  'MMMM Do YYYY, h:mm:ss a'
+                )}
+              </DateText>
               <Text>{item.content.title}</Text>
             </PressLink>
           </TitleText>
@@ -52,7 +57,7 @@ const TitleText = styled.li`
 const Text = styled.p`
   font-size: 18px;
   padding: 0 5px 0 5px;
-  padding: 15px;
+  padding: 15px 15px 15px 0;
   cursor: pointer;
 `;
 

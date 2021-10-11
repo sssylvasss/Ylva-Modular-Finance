@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useMemo } from 'react';
 import styled from 'styled-components';
 import Modal from 'react-modal';
+import moment from 'moment';
 
 export const PressReleaseList = ({ lang, tag, type }) => {
   const [pressReleases, setPressReleases] = useState(null);
@@ -50,7 +51,11 @@ export const PressReleaseList = ({ lang, tag, type }) => {
             <ListCell>
               <Image src={item.author.brand_image_url} alt='Brand image' />
               <ListTextCell>
-                <DateText>Published: {item.content.publish_date}</DateText>
+                <DateText>
+                  {moment(item.content.publish_date).format(
+                    'MMMM Do YYYY, h:mm:ss a'
+                  )}
+                </DateText>
                 <Text>Title: {item.content.title}</Text>
               </ListTextCell>
             </ListCell>
